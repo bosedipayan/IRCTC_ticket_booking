@@ -1,5 +1,12 @@
 package ticket.booking.services;
 
-public class UserBookingService {
+import ticket.booking.entities.User;
 
+public class UserBookingService {
+    private  User user;
+
+    public UserBookingService(User user)
+    {
+
+    }
 }
