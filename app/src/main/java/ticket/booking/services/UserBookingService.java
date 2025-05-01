@@ -23,10 +23,20 @@ public class UserBookingService {
     {
         this.user = user1;
 
-        File users = new File(USERS_PATH);
-        userList = OBJECT_MAPPER.readValue(users, new TypeReference<List<User>>() {});
+        loadUsers();
     }
 
+
+    public UserBookingService() throws IOException
+    {
+        loadUsers();
+    }
+
+    public List<User> loadUsers() throws IOException
+    {
+        File users = new File(USERS_PATH);
+        return OBJECT_MAPPER.readValue(users, new TypeReference<List<User>>() {});
+    }
 
 
     public Boolean loginUser(){
@@ -62,4 +72,12 @@ public class UserBookingService {
     }
 
 //    cancelbooking will come
+
+    public  void cancelBooking() {
+        // Implement the logic to cancel a booking
+        // This could involve updating a file or a database
+        // For now, we'll just print a message
+
+        System.out.println("Booking cancelled successfully.");
+    }
 }
