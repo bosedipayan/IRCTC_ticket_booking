@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ticket.booking.entities.User;
+import ticket.booking.util.UserServiceUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,20 +29,37 @@ public class UserBookingService {
 
 
 
-//    public Boolean loginUser(){
-//        Optional<User> foundUser = userList.stream().filter(user1 -> {
-//            return user1.getName().equals(user.getName()) && UserServiceUtil.checkPassword(user.getPassword(), user1.getHashedPassword());
-//        }).findFirst();
-//        return foundUser.isPresent();
-//    }
-//
-//    public Boolean signUp(User user1){
-//        try{
-//            userList.add(user1);
-//            saveUserListToFile();
-//            return Boolean.TRUE;
-//        }catch (IOException ex){
-//            return Boolean.FALSE;
-//        }
-//    }
+    public Boolean loginUser(){
+        Optional<User> foundUser = userList.stream().filter(user1 -> {
+            return user1.getName().equals(user.getName()) && UserServiceUtil.checkPassword(user.getPassword(), user1.getHashedPassword());
+        }).findFirst();
+        return foundUser.isPresent();
+    }
+
+    public Boolean signUp(User user1){
+        try{
+            userList.add(user1);
+            saveUserListToFile();
+            return Boolean.TRUE;
+        }catch (IOException ex){
+            return Boolean.FALSE;
+        }
+    }
+
+    private  void saveUserListToFile() throws IOException {
+        OBJECT_MAPPER.writeValue(new File(USERS_PATH), userList);
+    }
+
+    // json -> object (deserialize)
+    // object -> json (serialize)
+
+    public void fetchBooking() {
+        // Implement the logic to fetch booking history for the user
+        // This could involve reading from a file or a database
+        // For now, we'll just print a message
+
+        user.printTickets();
+    }
+
+//    cancelbooking will come
 }

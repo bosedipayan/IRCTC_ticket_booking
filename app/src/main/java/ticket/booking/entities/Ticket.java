@@ -12,19 +12,16 @@ public class Ticket {
 
     public  Ticket() {}
 
-    public Ticket(String ticketId, String userId, String source, String destination, String dateOfTravel, Train train){
+    public Ticket(String ticketId, String userId, String source, String destination, String dateOfBooking, Train train)
+    {
         this.ticketId = ticketId;
         this.userId = userId;
         this.source = source;
         this.destination = destination;
-        this.dateOfBooking = dateOfTravel;
+        this.dateOfBooking = dateOfBooking;
         this.train = train;
     }
 
-    public String getTicketInfo(){
-        return String.format("Ticket ID: %s belongs to User %s from %s to %s on %s", ticketId, userId, source,
-                destination, dateOfBooking);
-    }
 
     public String getTicketId(){
         return ticketId;
@@ -74,5 +71,8 @@ public class Ticket {
         this.train = train;
     }
 
-
+    public String getTicketInfo(){
+        return String.format("Ticket ID: %s belongs to User %s from %s to %s on %s", ticketId, userId, source,
+                destination, dateOfBooking);
+    }
 }
