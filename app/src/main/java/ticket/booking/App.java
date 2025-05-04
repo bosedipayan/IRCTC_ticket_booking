@@ -63,6 +63,9 @@ public class App {
                         return;
                     }
                     break;
+                case 3:
+                    System.out.println("Fetching bookings for user: " );
+                    break;
             }
         }
     }
