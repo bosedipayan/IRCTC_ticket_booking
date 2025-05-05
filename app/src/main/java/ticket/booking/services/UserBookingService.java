@@ -3,6 +3,7 @@ package ticket.booking.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ticket.booking.entities.Train;
 import ticket.booking.entities.User;
 import ticket.booking.util.UserServiceUtil;
 
@@ -79,5 +80,15 @@ public class UserBookingService {
         // For now, we'll just print a message
 
         System.out.println("Booking cancelled successfully.");
+    }
+
+    public List<Train> getTrains(String source, String destination)
+    {
+        try{
+            TrainService trainService = new TrainService();
+            return trainService.searchTrains(source, destination);
+        }catch (Exception ex){
+            return null;
+        }
     }
 }

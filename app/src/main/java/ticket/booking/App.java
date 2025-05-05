@@ -1,6 +1,7 @@
 package ticket.booking;
 
 import ticket.booking.entities.User;
+import ticket.booking.services.TrainService;
 import ticket.booking.services.UserBookingService;
 import ticket.booking.util.UserServiceUtil;
 
@@ -65,6 +66,14 @@ public class App {
                     break;
                 case 3:
                     System.out.println("Fetching bookings for user: " );
+                    userBookingService.fetchBooking();
+                    break;
+                case 4:
+                    System.out.println("Enter source");
+                    String source = sc.next();
+                    System.out.println("Enter destination");
+                    String destination = sc.next();
+                    System.out.println("Searching for trains from " + source + " to " + destination);
                     break;
             }
         }
