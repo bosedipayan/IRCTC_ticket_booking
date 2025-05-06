@@ -1,5 +1,6 @@
 package ticket.booking;
 
+import ticket.booking.entities.Train;
 import ticket.booking.entities.User;
 import ticket.booking.services.TrainService;
 import ticket.booking.services.UserBookingService;
@@ -41,6 +42,7 @@ public class App {
             System.out.println("7. Exit the App");
             option = sc.nextInt();
 
+            Train trainSelectedForBooking = new Train();
             switch (option) {
                 case 1:
                     System.out.println("Enter your name");
@@ -73,7 +75,24 @@ public class App {
                     String source = sc.next();
                     System.out.println("Enter destination");
                     String destination = sc.next();
-                    System.out.println("Searching for trains from " + source + " to " + destination);
+//                    System.out.println("Searching for trains from " + source + " to " + destination);
+                    List<Train> trains = userBookingService.getTrains(source, destination);
+                    int index = 1;
+                    for (Train train : trains) {
+                        System.out.println(index+" Train id : "+train.getTrainId());
+                        for (Map.Entry<String, String> entry: train.getStationTimes().entrySet()){
+                            System.out.println("station "+entry.getKey()+" time: "+entry.getValue());
+                        }
+                    }
+                    System.out.println("Select a train by typing 1,2,3...");
+                    trainSelectedForBooking = trains.get(sc.nextInt());
+                    break;
+                case 5:
+                    System.out.println("Enter the row number you want to book");
+                    int rowNumber = sc.nextInt();
+                    System.out.println("Enter the seat number you want to book");
+                    int seatNumber = sc.nextInt();
+
                     break;
             }
         }
